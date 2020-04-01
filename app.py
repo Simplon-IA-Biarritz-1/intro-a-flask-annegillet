@@ -111,8 +111,8 @@ def mnist():
 
     #Logistic Regression
     #reglog = pickle.load(open('mnist_reglog.sav', 'rb'))
-    reglog = LogisticRegression()
-    reglog.fit(X_train, y_train)
+    #reglog = LogisticRegression()
+    #reglog.fit(X_train, y_train)
 
     #XG Boost - Trop long et pas si pertinent
     #xg = XGBClassifier()
@@ -120,10 +120,10 @@ def mnist():
 
     #Prédiction des résultats de l'image
     y_pred_rf = rf.predict(img_2d)
-    score_rf = rf.score(X_test, y_test)
+    score_rf = round(rf.score(X_test, y_test)*100,2)
 
-    y_pred_reglog = reglog.predict(img_2d)
-    score_reglog = reglog.score(X_test, y_test)
+    #y_pred_reglog = reglog.predict(img_2d)
+    #score_reglog = reglog.score(X_test, y_test)
 
     #y_pred_xg = xg.predict(img_2d)
     #y_score_xg = [y_pred_xg[0]]
@@ -134,8 +134,7 @@ def mnist():
 
     #score = classification_report(y_test, y_pred)
 
-    return render_template('pred.html', score_rf= score_rf, y_pred_rf=y_pred_rf, 
-                                        score_reglog=score_reglog, y_pred_reglog=y_pred_reglog)
+    return render_template('pred.html', score_rf= score_rf, y_pred_rf=y_pred_rf)
 
 if __name__ == "__main__":
     app.run()
